@@ -1,20 +1,12 @@
+import BlurCircle from './components/Circle';
+import styles from './styles';
 import {SIZES} from '@constants/styles';
 import {BlurMask, Canvas} from '@shopify/react-native-skia';
 import React, {useRef} from 'react';
-import BlurCircle from './components/Circle';
-import styles from './styles';
 
-const colors = [
-  '#D6D9FA',
-  '#D6F9EE',
-  '#FFF0DC',
-  'lavender',
-  'aliceblue',
-  'lightyellow',
-];
-
-const BlurBackground = () => {
+const BlurBackground = (): JSX.Element => {
   const r = useRef(SIZES.WINDOW.WIDTH / 4).current;
+  const circles = useRef(new Array(6).fill(1)).current;
   const steps = 5;
   const step = SIZES.WINDOW.HEIGHT / steps;
 
@@ -22,14 +14,13 @@ const BlurBackground = () => {
     <Canvas style={styles.background}>
       <BlurMask blur={50} style="normal" />
 
-      {colors.map((color, index) => (
+      {circles.map((value, index) => (
         <BlurCircle
           key={index}
           cx={index % 2 ? SIZES.WINDOW.WIDTH : 0}
           cy={step * index}
           r={r}
-          color={color}
-          delay={index * 2000}
+          delay={index * 1000}
         />
       ))}
     </Canvas>
