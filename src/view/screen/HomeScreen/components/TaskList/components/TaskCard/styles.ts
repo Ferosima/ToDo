@@ -1,28 +1,41 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   checkbox: {
-    marginRight: 12,
+    marginRight: 12
+  },
+  container: {
+    flex: 1
+  },
+  deleteIcon: {
+    bottom: 0,
+    justifyContent: "center",
+    margin: 0,
+    position: "absolute",
+    right: 26,
+    top: 0,
+    zIndex: -1
   },
   disabled: {
-    textDecorationLine: 'line-through',
+    textDecorationLine: "line-through"
   },
-  icon: {
+  editIcon: {
     bottom: 0,
-    justifyContent: 'center',
+    justifyContent: "center",
+    // right: 70,
+    left: 26,
     margin: 0,
-    position: 'absolute',
-    right: 30,
+    position: "absolute",
     top: 0,
-    zIndex: -1,
+    zIndex: -1
   },
   label: {
     flexShrink: 1,
-    marginBottom: 4,
+    marginBottom: 4
   },
   wrapper: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginVertical: 4,
-  },
+    alignItems: "center",
+    flexDirection: "row",
+    marginVertical: 4
+  }
 });

@@ -5,6 +5,7 @@ export type IconsId =
   | "Clock"
   | "Close"
   | "CloseFill"
+  | "Editsvg"
   | "Inbox"
   | "Plus"
   | "PlusFill"
@@ -18,6 +19,7 @@ export type IconsKey =
   | "Clock"
   | "Close"
   | "CloseFill"
+  | "Editsvg"
   | "Inbox"
   | "Plus"
   | "PlusFill"
@@ -31,6 +33,7 @@ export enum Icons {
   Clock = "Clock",
   Close = "Close",
   CloseFill = "CloseFill",
+  Editsvg = "Editsvg",
   Inbox = "Inbox",
   Plus = "Plus",
   PlusFill = "PlusFill",
@@ -45,9 +48,10 @@ export const ICONS_CODEPOINTS: { [key in Icons]: string } = {
   [Icons.Clock]: "61700",
   [Icons.Close]: "61701",
   [Icons.CloseFill]: "61702",
-  [Icons.Inbox]: "61703",
-  [Icons.Plus]: "61704",
-  [Icons.PlusFill]: "61705",
-  [Icons.Trash]: "61706",
-  [Icons.User]: "61707",
+  [Icons.Editsvg]: "61703",
+  [Icons.Inbox]: "61704",
+  [Icons.Plus]: "61705",
+  [Icons.PlusFill]: "61706",
+  [Icons.Trash]: "61707",
+  [Icons.User]: "61708",
 };

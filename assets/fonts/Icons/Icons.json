@@ -5,9 +5,10 @@
     "Clock": 61700,
     "Close": 61701,
     "CloseFill": 61702,
-    "Inbox": 61703,
-    "Plus": 61704,
-    "PlusFill": 61705,
-    "Trash": 61706,
-    "User": 61707
+    "Editsvg": 61703,
+    "Inbox": 61704,
+    "Plus": 61705,
+    "PlusFill": 61706,
+    "Trash": 61707,
+    "User": 61708
 }

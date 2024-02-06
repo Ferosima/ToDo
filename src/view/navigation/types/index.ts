@@ -1,7 +1,7 @@
-import {SCREENS} from '@constants/screens';
-import {TTask} from '@domain/entities/task/types';
+import { SCREENS } from "@constants/screens";
+import { ITaskEntity } from "@domain/entities/task/types";
 
 export type RootStackParamList = {
   [SCREENS.HOME]: undefined;
-  [SCREENS.TASK]: {taskId: TTask['id']};
+  [SCREENS.TASK]: { taskId?: ITaskEntity["id"] };
 };

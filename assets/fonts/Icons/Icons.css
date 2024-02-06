@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Icons";
-    src: url("./Icons.ttf?1fc080a5e6574da08729ed019d5ec67a") format("truetype");
+    src: url("./Icons.ttf?70e882c4a082c1e2c715730f44fcc33f") format("truetype");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -32,18 +32,21 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 .icon-CloseFill:before {
     content: "\f106";
 }
-.icon-Inbox:before {
+.icon-Editsvg:before {
     content: "\f107";
 }
-.icon-Plus:before {
+.icon-Inbox:before {
     content: "\f108";
 }
-.icon-PlusFill:before {
+.icon-Plus:before {
     content: "\f109";
 }
-.icon-Trash:before {
+.icon-PlusFill:before {
     content: "\f10a";
 }
-.icon-User:before {
+.icon-Trash:before {
     content: "\f10b";
+}
+.icon-User:before {
+    content: "\f10c";
 }

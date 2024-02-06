@@ -1,10 +1,9 @@
-import {ITaskEntity, ITaskEntityIn} from './types';
-import {makeAutoObservable} from 'mobx';
+import { ITaskEntity, ITaskEntityIn } from "./types";
 
 export class TaskEntity implements ITaskEntity {
   public id: number = 0;
 
-  public title: string = '';
+  public title: string = "";
 
   public description: string | undefined;
 
@@ -14,21 +13,12 @@ export class TaskEntity implements ITaskEntity {
     Object.entries(data).forEach(([key, value]) => {
       this[key] = value;
     });
-
-    makeAutoObservable(this);
   }
-
-  public patch = (props: Partial<ITaskEntityIn>): void => {
-    Object.entries(props).forEach(([key, value]) => {
-      if (key === 'id') return;
-      this[key] = value;
-    });
-  };
 
   public serialize = (): ITaskEntityIn => ({
     description: this.description,
     id: this.id,
     isDone: this.isDone,
-    title: this.title,
+    title: this.title
   });
 }

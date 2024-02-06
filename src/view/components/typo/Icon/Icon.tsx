@@ -1,8 +1,8 @@
-import {TextProps} from 'react-native';
-import {createIconSet} from 'react-native-vector-icons';
-import {IconsId} from '@assets/fonts/Icons/Icons';
-import config from '@assets/fonts/Icons/Icons.json';
-import styles from './styles';
+import styles from "./styles";
+import { TextProps } from "react-native";
+import { createIconSet } from "react-native-vector-icons";
+import { IconsId } from "@assets/fonts/Icons/Icons";
+import config from "@assets/fonts/Icons/Icons.json";
 
 export interface IconComponentProps extends TextProps {
   /**
@@ -15,7 +15,7 @@ export interface IconComponentProps extends TextProps {
   color?: string;
 }
 
-const AIcon = createIconSet(config, 'Icons');
+const AIcon = createIconSet(config, "Icons");
 
 /**
  * Simple icon component
@@ -23,10 +23,6 @@ const AIcon = createIconSet(config, 'Icons');
 export const Icon: React.FunctionComponent<IconComponentProps> = ({
   style,
   ...props
-}: React.PropsWithChildren<IconComponentProps>) => {
-  // if (!props.color) {
-  //   return null;
-  // }
-
-  return <AIcon {...props} style={[styles.icon, style]} />;
-};
+}: React.PropsWithChildren<IconComponentProps>) => (
+  <AIcon {...props} style={[styles.icon, style]} />
+);

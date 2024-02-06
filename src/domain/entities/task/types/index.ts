@@ -16,7 +16,5 @@ export declare class ITaskEntity {
 
   public constructor(data: ITaskEntityIn);
 
-  public patch(props: Partial<ITaskEntityIn>): void;
-
   public serialize(): ITaskEntityIn;
 }

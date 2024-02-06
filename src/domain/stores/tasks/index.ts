@@ -55,9 +55,12 @@ export class TasksStore extends HydrateStore implements ITasksStore {
     props: Partial<ITaskEntityIn>
   ): void => {
     const task = this._tasks.get(id);
-    if (task) {
-      task.patch(props);
-    }
+    if (!task) return;
+
+    this._tasks.set(
+      id,
+      new TaskEntity({ ...task?.serialize(), ...props } as ITaskEntityIn)
+    );
   };
 
   public deleteTask = (id: number): void => {

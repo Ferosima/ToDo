@@ -32,7 +32,7 @@ export const COLORS = {
   blueGray: '#D1D4DA',
 
   danger: '#FE3360',
-  danger10: '#FE336010',
+  dangerLight: '#FE336070',
   gray1: '#8E8E93',
   gray2: '#B6B6BB',
   gray3: '#F1F1F1',

@@ -1,33 +1,39 @@
-import {useAnimateInput} from './hooks/useAnimateInput';
-import styles from './styles';
-import AnimatedText from '../AnimatedText/AnimatedText';
-import Card from '@components/card/BlurCard';
+import { useAnimateInput } from "./hooks/useAnimateInput";
+import styles from "./styles";
+import AnimatedText from "../AnimatedText/AnimatedText";
+import Card from "@components/card/BlurCard";
 import React, {
   forwardRef,
   useCallback,
+  useEffect,
   useImperativeHandle,
   useRef,
-  useState,
-} from 'react';
+  useState
+} from "react";
 import {
   NativeSyntheticEvent,
   TextInputChangeEventData,
   TextInputProps,
-  View,
-} from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
-import {FadeIn, FadeOut, Layout} from 'react-native-reanimated';
+  View
+} from "react-native";
+import { TextInput } from "react-native-gesture-handler";
+import { FadeIn, FadeOut, Layout } from "react-native-reanimated";
 
-type Props = TextInputProps & {label: string; error?: string};
+type Props = TextInputProps & { label: string; error?: string };
 
 const Input = forwardRef(
-  ({label, value, onChange, error, style, ...props}: Props, _ref) => {
+  ({ label, value, onChange, error, style, ...props }: Props, _ref) => {
     const [_value, setValue] = useState(value);
     const ref = useRef<TextInput>(null);
     const [animatedStyle, handleAnimateOnFocus, handleAnimateOnBlur] =
       useAnimateInput();
 
     useImperativeHandle(_ref, () => ref.current, [ref]);
+
+    useEffect(() => {
+      if (value) handleAnimateOnFocus();
+      setValue(value);
+    }, [value]);
 
     const onPress = useCallback(async () => {
       if (!ref.current?.isFocused()) {
@@ -40,7 +46,7 @@ const Input = forwardRef(
         setValue(e.nativeEvent.text);
         onChange?.(e);
       },
-      [onChange],
+      [onChange]
     );
 
     const handleBlur = () => {
@@ -54,7 +60,7 @@ const Input = forwardRef(
     return (
       <View style={[style]}>
         <Card style={[styles.wrapper]} onTouchEnd={onPress}>
-          <AnimatedText type={'t6'} style={[styles.label, animatedStyle]}>
+          <AnimatedText type={"t6"} style={[styles.label, animatedStyle]}>
             {label}
           </AnimatedText>
 
@@ -71,16 +77,17 @@ const Input = forwardRef(
 
         {error ? (
           <AnimatedText
-            type={'t11'}
-            color={'danger'}
+            type={"t11"}
+            color={"danger"}
             entering={FadeIn}
             exiting={FadeOut}
-            layout={Layout.delay(100)}>
+            layout={Layout.delay(100)}
+          >
             {error}
           </AnimatedText>
         ) : null}
       </View>
     );
-  },
+  }
 );
 export default Input;
