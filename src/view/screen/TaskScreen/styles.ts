@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   wrapper: {
@@ -9,4 +9,10 @@ export default StyleSheet.create({
   button: {
     marginHorizontal: 6,
   },
+  input: {
+    marginVertical: 6
+  },
+  container: {
+    paddingTop: 16,
+  }
 });

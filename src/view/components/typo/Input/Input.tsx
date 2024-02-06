@@ -1,3 +1,6 @@
+import {useAnimateInput} from './hooks/useAnimateInput';
+import styles from './styles';
+import AnimatedText from '../AnimatedText/AnimatedText';
 import Card from '@components/card/BlurCard';
 import React, {
   forwardRef,
@@ -10,17 +13,15 @@ import {
   NativeSyntheticEvent,
   TextInputChangeEventData,
   TextInputProps,
+  View,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
-import Animated from 'react-native-reanimated';
-import AnimatedText from '../AnimatedText/AnimatedText';
-import {useAnimateInput} from './hooks/useAnimateInput';
-import styles from './styles';
+import {FadeIn, FadeOut, Layout} from 'react-native-reanimated';
 
-type Props = TextInputProps & {label: string};
+type Props = TextInputProps & {label: string; error?: string};
 
 const Input = forwardRef(
-  ({label, value, onChange, style, ...props}: Props, _ref) => {
+  ({label, value, onChange, error, style, ...props}: Props, _ref) => {
     const [_value, setValue] = useState(value);
     const ref = useRef<TextInput>(null);
     const [animatedStyle, handleAnimateOnFocus, handleAnimateOnBlur] =
@@ -51,21 +52,34 @@ const Input = forwardRef(
     };
 
     return (
-      <Card style={[styles.wrapper, style]} onTouchEnd={onPress}>
-        <AnimatedText type={'t6'} style={[styles.label, animatedStyle]}>
-          {label}
-        </AnimatedText>
+      <View style={[style]}>
+        <Card style={[styles.wrapper]} onTouchEnd={onPress}>
+          <AnimatedText type={'t6'} style={[styles.label, animatedStyle]}>
+            {label}
+          </AnimatedText>
 
-        <TextInput
-          {...props}
-          ref={ref}
-          value={_value}
-          onChange={handleOnChange}
-          style={[styles.input]}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        />
-      </Card>
+          <TextInput
+            {...props}
+            ref={ref}
+            value={_value}
+            onChange={handleOnChange}
+            style={[styles.input]}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          />
+        </Card>
+
+        {error ? (
+          <AnimatedText
+            type={'t11'}
+            color={'danger'}
+            entering={FadeIn}
+            exiting={FadeOut}
+            layout={Layout.delay(100)}>
+            {error}
+          </AnimatedText>
+        ) : null}
+      </View>
     );
   },
 );

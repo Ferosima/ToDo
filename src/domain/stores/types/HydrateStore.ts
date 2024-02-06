@@ -2,23 +2,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {hydrateStore, makePersistable} from 'mobx-persist-store';
 
 export class HydrateStore {
-  afterHydration: (() => Promise<void> | void)[] = [];
-  private name: string;
+  protected afterHydration: (() => Promise<void> | void)[] = [];
 
-  constructor(name: string, properties: any[]) {
-    this.name = name;
+  public constructor(name: string, properties: any[]) {
     makePersistable(this, {
-      storage: AsyncStorage,
-      stringify: true,
+      expireIn: 15552000000,
       name,
       properties,
-      expireIn: 15552000000,
+      storage: AsyncStorage,
+      stringify: true,
     }).then(() => {
-      this.afterHydration.map(func => func());
+      // this.afterHydration.map(func => func());
     });
   }
 
-  hydrateStore = async () => {
+  public hydrateStore = async (): Promise<void> => {
     await hydrateStore(this);
     this.afterHydration.map(func => func());
   };

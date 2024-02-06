@@ -1,5 +1,5 @@
 import {tasksStore} from './tasks';
-import {ITasksStore} from './tasks/types';
+import {ITasksStore} from '../entities/task/types';
 
 export interface IMainStore {
   tasksStore: ITasksStore;

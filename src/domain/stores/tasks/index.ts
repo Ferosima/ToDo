@@ -1,63 +1,64 @@
-import {
-  ObservableMap,
-  action,
-  computed,
-  makeObservable,
-  observable,
-} from 'mobx';
+import {ITasksStore} from './types';
 import {HydrateStore} from '../types/HydrateStore';
-import {ITasksStore, TTask} from './types';
+import {action, computed, makeObservable, observable} from 'mobx';
+import {ITaskEntity} from '@domain/entities/task/types';
 
 const data = [
   {
-    title: 'Important Task',
     description: 'Important Task Description',
-    done: true,
+    isDone: true,
+    title: 'Important Task',
   },
-  {title: 'Important Task', description: 'Important Task Description'},
-  {title: 'Important Task', description: 'Important Task Description'},
-  {title: 'Important Task', description: 'Important Task Description'},
-  {title: 'Important Task', description: 'Important Task Description'},
-  {title: 'Important Task', description: 'Important Task Description'},
-  {title: 'Important Task', description: 'Important Task Description'},
-  {title: 'Important Task', description: 'Important Task Description'},
-  {title: 'Important Task', description: 'Important Task Description'},
-  {title: 'Important Task', description: 'Important Task Description'},
-  {title: 'Important Task', description: 'Important Task Description'},
+  {description: 'Important Task Description', title: 'Important Task'},
+  {description: 'Important Task Description', title: 'Important Task'},
+  {description: 'Important Task Description', title: 'Important Task'},
+  {description: 'Important Task Description', title: 'Important Task'},
+  {description: 'Important Task Description', title: 'Important Task'},
+  {description: 'Important Task Description', title: 'Important Task'},
+  {description: 'Important Task Description', title: 'Important Task'},
+  {description: 'Important Task Description', title: 'Important Task'},
+  {description: 'Important Task Description', title: 'Important Task'},
+  {description: 'Important Task Description', title: 'Important Task'},
 ];
 
 export class TasksStore extends HydrateStore implements ITasksStore {
-  private _tasks = new ObservableMap<number, TTask>();
+  public _taskss = new Map();
 
-  constructor() {
-    super('TasksStore', ['tasks']);
+  public constructor() {
+    super('TasksStore', ['_taskss']);
     makeObservable(this, {
-      tasks: computed,
+      _taskss: observable,
+
       addTask: action,
-      editTask: action,
       deleteTask: action,
+      editTask: action,
+
+      tasks: computed,
     });
-    console.log(this._tasks.size);
-    if (!this._tasks.size) {
-      data.forEach((task, index) => this.addTask({...task, id: index}));
-    }
   }
 
-  public get tasks(): TTask[] {
-    return Array.from(this._tasks, ([id, task]) => task);
+  public get tasks(): ITaskEntity[] {
+    return Array.from(this._taskss, ([id, task]) => task).sort((a, b) => {
+      // First, sort by isDone (false comes before true)
+      if (a.isDone !== b.isDone) {
+        return a.isDone ? 1 : -1;
+      } else {
+        // If isDone is the same, sort by id
+        return a.id - b.id;
+      }
+    });
   }
 
-  public addTask = (task: TTask) => {
-    this._tasks.set(task.id, task);
+  public addTask = (task: ITaskEntity): void => {
+    this._taskss.set(task.id, task);
   };
 
-  public editTask = (task: TTask) => {
-    this._tasks.set(task.id, task);
+  public editTask = (task: ITaskEntity): void => {
+    this._taskss.set(task.id, task);
   };
 
-  public deleteTask = (id: number) => {
-    console.log('FF', id, this._tasks.get(id));
-    this._tasks.delete(id);
+  public deleteTask = (id: number): void => {
+    this._taskss.delete(id);
   };
 }
 

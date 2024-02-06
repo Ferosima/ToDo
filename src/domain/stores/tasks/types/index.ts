@@ -1,18 +1,11 @@
-import {HydrateStore} from 'src/domain/stores/types/HydrateStore';
-
-export type TTask = {
-  id: number;
-  title: string;
-  description: string;
-  done?: boolean;
-};
+import { ITaskEntity } from '@domain/entities/task/types';
+import { HydrateStore } from '@domain/stores/types/HydrateStore';
 
 export declare class ITasksStore extends HydrateStore {
-  // public get tasks: Map<number, TTask>;
 
-  public addTask(task: TTask): void;
+  public addTask(task: ITaskEntity): void;
 
-  public editTask(task: TTask): void;
+  public editTask(task: ITaskEntity): void;
 
   public deleteTask(id: number): void;
 }

@@ -1,7 +1,6 @@
 import {SIZES} from '@constants/styles';
-import {TTask} from '@domain/stores/tasks/types';
+import {TTask} from '@domain/entities/task/types';
 import {ViewStyle} from 'react-native';
-import {GestureEvent} from 'react-native-gesture-handler';
 import {
   runOnJS,
   useAnimatedGestureHandler,
@@ -27,7 +26,6 @@ export const useTaskCardAnimationHook = (
     },
     onEnd: event => {
       if (event.translationX < -SIZES.WINDOW.WIDTH * 0.3) {
-        console.log(event.translationX);
         translateX.value = withTiming(-SIZES.WINDOW.WIDTH, undefined, () => {
           runOnJS(onDismiss)(id);
         });

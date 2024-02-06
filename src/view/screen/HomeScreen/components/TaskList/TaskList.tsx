@@ -1,18 +1,19 @@
+import TaskCard from './components/TaskCard/TaskCard';
+import styles from './styles';
+import {ITaskEntity} from '@domain/entities/task/types';
 import {tasksStore} from '@domain/stores/tasks';
-import {TTask} from '@domain/stores/tasks/types';
+
 import {observer} from 'mobx-react';
 import React, {useCallback, useRef} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 import {FadeIn, FadeOut} from 'react-native-reanimated';
-import TaskCard from './components/TaskCard/TaskCard';
-import styles from './styles';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const TaskList = observer(() => {
   const ref = useRef(null);
   const insets = useSafeAreaInsets();
 
-  const onDismiss = useCallback((id: TTask['id']) => {
+  const onDismiss = useCallback((id: ITaskEntity['id']) => {
     tasksStore.deleteTask(id);
   }, []);
 

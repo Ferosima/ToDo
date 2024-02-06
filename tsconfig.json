@@ -4,6 +4,7 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "jsx": "react-native",
     "checkJs": true,
     "module": "es2020",
@@ -25,7 +26,6 @@
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": false,
     "noEmit": true,
-    "baseUrl": ".",
     "paths": {
       "@assets/*": ["./assets/*"],
       "@constants/*": ["./src/constants/*"],
