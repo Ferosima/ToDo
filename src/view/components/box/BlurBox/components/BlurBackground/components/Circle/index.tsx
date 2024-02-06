@@ -53,8 +53,8 @@ const BlurCircle = ({ delay = 0, ...props }: Props): JSX.Element => {
       delay,
       withRepeat(
         withSequence(
-          withTiming(1, { duration: 9000 }),
-          withTiming(0, { duration: 9000 })
+          withTiming(1, { duration: 10000 }),
+          withTiming(0, { duration: 10000 })
         ),
         -1
       )
