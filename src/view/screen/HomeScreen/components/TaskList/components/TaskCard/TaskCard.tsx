@@ -8,7 +8,7 @@ import {COLORS} from '@constants/styles';
 import {ITaskEntity} from '@domain/entities/task/types';
 import {tasksStore} from '@domain/stores/tasks';
 
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, ViewProps} from 'react-native';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import Animated, {AnimateProps, Layout} from 'react-native-reanimated';
@@ -28,10 +28,16 @@ const TaskCard = ({
   const [animatedCardStyle, animatedIconStyle, panGestureHandler] =
     useTaskCardAnimationHook(task.id, onDismiss);
 
+  const onCheck = useCallback(
+    isDone => tasksStore.editTask(task.id, {isDone}),
+    [],
+  );
+
   return (
     <PanGestureHandler
       onGestureEvent={panGestureHandler}
-      simultaneousHandlers={simultaneous}>
+      simultaneousHandlers={simultaneous}
+      activeOffsetX={[-10, 10]}>
       <Animated.View {...props} layout={Layout.delay(200)}>
         <Card
           layout={Layout.delay(100)}
@@ -39,7 +45,7 @@ const TaskCard = ({
           <Checkbox
             style={styles.checkbox}
             checked={Boolean(task.isDone)}
-            onChange={isDone => tasksStore.editTask({...task, isDone})}
+            onChange={onCheck}
           />
 
           <View>

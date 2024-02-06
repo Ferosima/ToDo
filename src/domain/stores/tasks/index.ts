@@ -1,28 +1,10 @@
 import {ITasksStore} from './types';
 import {HydrateStore} from '../types/HydrateStore';
 import {action, computed, makeObservable, observable} from 'mobx';
-import {ITaskEntity} from '@domain/entities/task/types';
-
-const data = [
-  {
-    description: 'Important Task Description',
-    isDone: true,
-    title: 'Important Task',
-  },
-  {description: 'Important Task Description', title: 'Important Task'},
-  {description: 'Important Task Description', title: 'Important Task'},
-  {description: 'Important Task Description', title: 'Important Task'},
-  {description: 'Important Task Description', title: 'Important Task'},
-  {description: 'Important Task Description', title: 'Important Task'},
-  {description: 'Important Task Description', title: 'Important Task'},
-  {description: 'Important Task Description', title: 'Important Task'},
-  {description: 'Important Task Description', title: 'Important Task'},
-  {description: 'Important Task Description', title: 'Important Task'},
-  {description: 'Important Task Description', title: 'Important Task'},
-];
+import {ITaskEntity, ITaskEntityIn} from '@domain/entities/task/types';
 
 export class TasksStore extends HydrateStore implements ITasksStore {
-  public _taskss = new Map();
+  public _taskss = new Map<number, ITaskEntity>();
 
   public constructor() {
     super('TasksStore', ['_taskss']);
@@ -53,8 +35,14 @@ export class TasksStore extends HydrateStore implements ITasksStore {
     this._taskss.set(task.id, task);
   };
 
-  public editTask = (task: ITaskEntity): void => {
-    this._taskss.set(task.id, task);
+  public editTask = (
+    id: ITaskEntity['id'],
+    props: Partial<ITaskEntityIn>,
+  ): void => {
+    const task = this._taskss.get(id);
+    if (task) {
+      task.patch(props);
+    }
   };
 
   public deleteTask = (id: number): void => {

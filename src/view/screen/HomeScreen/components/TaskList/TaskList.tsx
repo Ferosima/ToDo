@@ -24,6 +24,7 @@ const TaskList = observer(() => {
       showsVerticalScrollIndicator={false}>
       {tasksStore.tasks.map((item, index) => (
         <TaskCard
+          style={styles.item}
           simultaneous={ref}
           key={item.id}
           entering={FadeIn.delay(100 * index)}

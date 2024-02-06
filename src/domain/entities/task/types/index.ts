@@ -14,7 +14,7 @@ export declare class ITaskEntity {
 
   public isDone: boolean;
 
-  public constructor({title, description, id}: ITaskEntityIn);
+  public constructor(data: ITaskEntityIn);
 
-  public setDone(isDone: boolean): void;
+  public patch(props: Partial<ITaskEntityIn>): void;
 }
