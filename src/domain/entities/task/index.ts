@@ -24,4 +24,11 @@ export class TaskEntity implements ITaskEntity {
       this[key] = value;
     });
   };
+
+  public serialize = (): ITaskEntityIn => ({
+    description: this.description,
+    id: this.id,
+    isDone: this.isDone,
+    title: this.title,
+  });
 }

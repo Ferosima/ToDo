@@ -1,7 +1,7 @@
 import {TaskEntity} from '@domain/entities/task';
 import {tasksStore} from '@domain/stores/tasks';
 import {useNavigation} from '@react-navigation/native';
-import React, {useCallback, useState} from 'react';
+import {useCallback, useState} from 'react';
 import {NativeSyntheticEvent, TextInputChangeEventData} from 'react-native';
 
 type TTaskFields = {
@@ -26,17 +26,12 @@ export const useTaskControllerHook = (): [
   const [task, setTask] = useState<TTaskFields>(initialFields);
   const [errors, setErrors] = useState<TTaskErrors>(initialFields);
 
-  const onChange = useCallback(
-    React.useCallback(
-      (key: string) => (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-        setTask({...task, [key]: e.nativeEvent.text});
-      },
-      [],
-    ),
-    [],
-  );
+  const onChange =
+    (key: string) => (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
+      setTask({...task, [key]: e.nativeEvent.text});
+    };
 
-  const onConfirm = useCallback(() => {
+  const onConfirm = () => {
     // Clear Errors
     setErrors({});
 
@@ -45,7 +40,7 @@ export const useTaskControllerHook = (): [
 
     tasksStore.addTask(new TaskEntity({...task, id: Date.now()}));
     navigation.goBack();
-  }, [task]);
+  };
 
   const validate = useCallback((fields: TTaskFields): boolean => {
     if (!fields.title) {

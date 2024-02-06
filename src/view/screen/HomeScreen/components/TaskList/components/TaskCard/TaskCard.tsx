@@ -57,12 +57,14 @@ const TaskCard = ({
               {task.title}
             </Text>
 
-            <Text
-              type="t10"
-              color={task.isDone ? 'gray2' : 'gray1'}
-              style={task.isDone ? styles.disabled : null}>
-              {task.description}
-            </Text>
+            {task.description ? (
+              <Text
+                type="t10"
+                color={task.isDone ? 'gray2' : 'gray1'}
+                style={task.isDone ? styles.disabled : null}>
+                {task.description}
+              </Text>
+            ) : null}
           </View>
         </Card>
 
