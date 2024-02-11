@@ -5,7 +5,7 @@ import {BlurMask, Canvas} from '@shopify/react-native-skia';
 import React, {useRef} from 'react';
 
 const BlurBackground = (): JSX.Element => {
-  const r = useRef(SIZES.WINDOW.WIDTH / 4).current;
+  const r = useRef(SIZES.WINDOW.WIDTH / 2).current;
   const circles = useRef(new Array(6).fill(1)).current;
   const steps = 5;
   const step = SIZES.WINDOW.HEIGHT / steps;
