@@ -1,44 +1,51 @@
-import {SIZES} from '@constants/styles';
-import {vec} from '@shopify/react-native-skia';
-import React from 'react';
+import BlurBackground from "./components/BlurBackground/BlurBackground";
+import BlurEdge from "./components/BlurEdge/BlurEdge";
+import styles from "./styles";
+import { View, ViewProps } from "react-native";
+import { vec } from "@shopify/react-native-skia";
+import React, { useRef } from "react";
 import {
-  SafeAreaView,
   SafeAreaViewProps,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import BlurBackground from './components/BlurBackground/BlurBackground';
-import BlurEdge from './components/BlurEdge/Blur';
-import styles from './styles';
+  useSafeAreaInsets
+} from "react-native-safe-area-context";
 
-type Props = SafeAreaViewProps & {
+type Props = ViewProps & {
   children?: React.ReactNode;
   bottomBlur?: boolean;
+  edges?: SafeAreaViewProps["edges"];
 };
 
-const BlurBox = ({bottomBlur, ...props}: Props) => {
+const BlurBox = ({
+  bottomBlur,
+  edges = [],
+  ...props
+}: React.PropsWithChildren<Props>): JSX.Element => {
+  const edgeHeight = useRef(60).current;
   const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView {...props} style={[styles.wrapper, props.style]}>
+    <View style={[styles.wrapper, props.style]}>
       <BlurEdge
-        height={SIZES.HOME.HEADER + insets.top}
-        colors={['white', '#FFFFFF00']}
+        height={edgeHeight + insets.top}
+        colors={["#FFFFFF90", "#FFFFFF00"]}
         start={vec(0, 0 + insets.top)}
-        end={vec(0, SIZES.HOME.HEADER + insets.top)}
-        style={{...styles.blur, ...styles.top}}
+        end={vec(0, edgeHeight + insets.top)}
+        style={[styles.blur, styles.top]}
       />
+
       {props.children}
+
       <BlurEdge
         enabled={bottomBlur}
-        height={SIZES.HOME.HEADER}
+        height={edgeHeight}
         start={vec(0, 0)}
-        end={vec(0, SIZES.HOME.HEADER)}
-        colors={['#FFFFFF00', 'white']}
-        style={{...styles.blur, ...styles.bottom}}
+        end={vec(0, edgeHeight)}
+        colors={["#FFFFFF00", "#FFFFFF80"]}
+        style={[styles.blur, styles.bottom]}
       />
 
       <BlurBackground />
-    </SafeAreaView>
+    </View>
   );
 };
 

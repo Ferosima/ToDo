@@ -9,6 +9,7 @@ import React from "react";
 import { ScrollView, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { SCREENS } from "@constants/screens";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const TaskScreen = ({
   navigation,
@@ -22,9 +23,10 @@ const TaskScreen = ({
     navigation,
     route
   });
+  const insets = useSafeAreaInsets();
 
   return (
-    <BlurBox edges={["bottom"]} bottomBlur={false}>
+    <BlurBox bottomBlur={false}>
       <ScrollView
         keyboardShouldPersistTaps="handled"
         style={styles.wrapper}
@@ -50,7 +52,11 @@ const TaskScreen = ({
         </View>
       </ScrollView>
 
-      <Button {...button} style={styles.button} onPress={onConfirm} />
+      <Button
+        {...button}
+        style={[styles.button, { marginBottom: insets.bottom }]}
+        onPress={onConfirm}
+      />
     </BlurBox>
   );
 };

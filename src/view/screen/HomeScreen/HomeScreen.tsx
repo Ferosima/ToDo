@@ -1,11 +1,11 @@
-import Header from './components/Header/Header';
-import TaskList from './components/TaskList/TaskList';
-import styles from './styles';
-import React from 'react';
-import BlurBox from '@components/box/BlurBox/BlurBox';
+import Header from "./components/Header/Header";
+import styles from "./styles";
+import TaskList from "./components/TaskList/TaskList";
+import React from "react";
+import BlurBox from "@components/box/BlurBox/BlurBox";
 
 const HomeScreen = (): JSX.Element => (
-  <BlurBox edges={['top']} style={styles.wrapper}>
+  <BlurBox style={styles.wrapper}>
     <Header />
     <TaskList />
   </BlurBox>

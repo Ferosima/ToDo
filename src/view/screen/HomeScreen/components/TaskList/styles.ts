@@ -1,4 +1,3 @@
-import { SIZES } from "@constants/styles";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
@@ -6,7 +5,6 @@ export default StyleSheet.create({
     paddingHorizontal: 16
   },
   wrapper: {
-    marginTop: -10,
-    paddingTop: SIZES.HOME.HEADER
+    marginTop: -10
   }
 });

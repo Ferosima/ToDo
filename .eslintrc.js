@@ -6,16 +6,16 @@ module.exports = {
     "plugin:jsdoc/recommended-error",
     "plugin:import/recommended",
     /** Turns off all rules that are unnecessary or might conflict with Prettier. */
-    "prettier"
+    "prettier",
   ],
   root: true,
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "./tsconfig.json",
-    tsconfigRootDir: __dirname
+    tsconfigRootDir: __dirname,
   },
   globals: {
-    EDB_Matter: true
+    EDB_Matter: true,
   },
   ignorePatterns: ["node_modules/*"],
   plugins: [
@@ -24,20 +24,20 @@ module.exports = {
     "jsdoc",
     "unused-imports",
     "prettier",
-    "sort-keys"
+    "sort-keys",
   ],
   overrides: [
     {
       // enable the rule specifically for TypeScript files
       files: ["*.ts"],
       rules: {
-        "@typescript-eslint/explicit-function-return-type": ["warn"]
-      }
-    }
+        "@typescript-eslint/explicit-function-return-type": ["warn"],
+      },
+    },
   ],
   env: {
     jest: true,
-    node: true
+    node: true,
   },
   rules: {
     // disable the rule for all files
@@ -45,8 +45,8 @@ module.exports = {
     "@typescript-eslint/explicit-member-accessibility": [
       "error",
       {
-        accessibility: "explicit"
-      }
+        accessibility: "explicit",
+      },
     ],
     "@typescript-eslint/explicit-module-boundary-types": ["error"],
     "@typescript-eslint/member-ordering": ["error"],
@@ -61,14 +61,14 @@ module.exports = {
     "import/no-cycle": [
       2,
       {
-        maxDepth: 1
-      }
+        maxDepth: 1,
+      },
     ],
     "import/no-duplicates": [
       "error",
       {
-        "prefer-inline": true
-      }
+        "prefer-inline": true,
+      },
     ],
     "import/no-dynamic-require": 2,
     "import/no-empty-named-blocks": 2,
@@ -87,9 +87,9 @@ module.exports = {
           "external",
           "builtin",
           "object",
-          "type"
-        ]
-      }
+          "type",
+        ],
+      },
     ],
     "jsdoc/check-alignment": "error",
     "jsdoc/check-indentation": "error",
@@ -99,6 +99,7 @@ module.exports = {
     "jsdoc/require-returns-type": "off",
     "jsx-quotes": ["error", "prefer-double"],
     "lines-between-class-members": ["warn", "always"],
+    // "max-len": { code: 150 },
     "max-classes-per-file": ["error", 1],
     "no-bitwise": "off",
     "no-caller": "error",
@@ -129,9 +130,9 @@ module.exports = {
           "profile",
           "profileEnd",
           "timeStamp",
-          "context"
-        ]
-      }
+          "context",
+        ],
+      },
     ],
     "no-debugger": "error",
     "no-empty": "error",
@@ -171,8 +172,8 @@ module.exports = {
       "error",
       "always",
       {
-        markers: ["/"]
-      }
+        markers: ["/"],
+      },
     ],
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
@@ -181,8 +182,8 @@ module.exports = {
         args: "after-used",
         argsIgnorePattern: "^_",
         vars: "all",
-        varsIgnorePattern: "^_"
-      }
-    ]
-  }
+        varsIgnorePattern: "^_",
+      },
+    ],
+  },
 };

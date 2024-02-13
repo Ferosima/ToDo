@@ -51,7 +51,6 @@ export const useTaskCardAnimationHook = (
     }
   });
   const animatedWrapperStyle = useAnimatedStyle(() => ({
-    // transform: [{translateX: translateX.value}],
     backgroundColor: interpolateColor(
       color.value,
       [0, 1],

@@ -12,6 +12,7 @@ import { FadeIn, FadeOut } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SCREENS } from "@constants/screens";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { SIZES } from "@constants/styles";
 
 const TaskList = observer(() => {
   const navigation =
@@ -29,7 +30,13 @@ const TaskList = observer(() => {
 
   return (
     <ScrollView
-      contentContainerStyle={[styles.wrapper, { paddingBottom: insets.bottom }]}
+      contentContainerStyle={[
+        styles.wrapper,
+        {
+          paddingBottom: insets.bottom,
+          paddingTop: SIZES.HOME.HEADER + insets.top
+        }
+      ]}
       ref={ref}
       showsVerticalScrollIndicator={false}
     >

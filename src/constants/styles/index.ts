@@ -1,53 +1,55 @@
-import {Dimensions} from 'react-native';
+import { Dimensions } from "react-native";
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
 export const SIZES = {
-  HOME: {HEADER: 60},
-  WINDOW: {
-    WIDTH: width,
-    HEIGHT: height,
+  HOME: {
+    HEADER: 60
   },
+  WINDOW: {
+    HEIGHT: height,
+    WIDTH: width
+  }
 };
 
 export enum FONT_FAMILY {
-  THIN = 'LexendDeca-Thin',
-  LIGHT = 'LexendDeca-Light',
-  REGULAR = 'LexendDeca-Regular',
-  MEDIUM = 'LexendDeca-Medium',
-  SEMI_BOLD = 'LexendDeca-SemiBold',
-  BOLD = 'LexendDeca-Bold',
-  EXTRA_BOLD = 'LexendDeca-Black',
+  THIN = "LexendDeca-Thin",
+  LIGHT = "LexendDeca-Light",
+  REGULAR = "LexendDeca-Regular",
+  MEDIUM = "LexendDeca-Medium",
+  SEMI_BOLD = "LexendDeca-SemiBold",
+  BOLD = "LexendDeca-Bold",
+  EXTRA_BOLD = "LexendDeca-Black"
 }
 
 export const COLORS = {
-  bg1: '#F7F7F7',
+  bg1: "#F7F7F7",
 
-  bg2: '#F3F2F7',
-  bg3: '#FFFFFF',
+  bg2: "#F3F2F7",
+  bg3: "#FFFFFF",
 
-  bg4: '#f2f2f2',
-  black: '#24252C',
-  blue: '#688EE0',
-  blueGray: '#D1D4DA',
+  bg4: "#f2f2f2",
+  black: "#24252C",
+  blue: "#688EE0",
+  blueGray: "#D1D4DA",
 
-  danger: '#FE3360',
-  dangerLight: '#FE336070',
-  gray1: '#8E8E93',
-  gray2: '#B6B6BB',
-  gray3: '#F1F1F1',
-  gray4: '#8496AF',
+  danger: "#FE3360",
+  dangerLight: "#FE336070",
+  gray1: "#8E8E93",
+  gray2: "#B6B6BB",
+  gray3: "#F1F1F1",
+  gray4: "#8496AF",
 
-  gray5: '#F3F5F7',
-  grayLine: '#E9E9E9',
-  green: '#25C35A',
-  main: '#5F33E1',
+  gray5: "#F3F5F7",
+  grayLine: "#E9E9E9",
+  green: "#25C35A",
+  main: "#5F33E1",
 
-  mainLight: '#5F33E1',
-  success: '#14C747',
-  successLight: '#E8FAED',
+  mainLight: "#5F33E1",
+  success: "#14C747",
+  successLight: "#E8FAED",
 
-  transparent: 'transparent',
+  transparent: "transparent",
 
-  white: '#FFFFFF',
+  white: "#FFFFFF"
 };
